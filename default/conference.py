@@ -64,8 +64,8 @@ class ConferenceApi(remote.Service):
         if not profile:
             profile = Profile(
                 key = None,
-                displayName = nickname(),
-                mainEmail= email(),
+                displayName = user.nickname(),
+                mainEmail= user.email(),
                 teeShirtSize = str(TeeShirtSize.NOT_SPECIFIED),
             )
             #TODO
