@@ -715,21 +715,21 @@ conferenceApp.controllers.controller('RootCtrl', function ($scope, $location, oa
     /**
      * Calls the OAuth2 authentication method.
      */
-    $scope.signIn = function () {
-        oauth2Provider.signIn(function () {
-          console.log(gapi)
-            gapi.client.oauth2.userinfo.get().execute(function (resp) {
-
-                $scope.$apply(function () {
-                    if (resp.email) {
-                        oauth2Provider.signedIn = true;
-                        $scope.alertStatus = 'success';
-                        $scope.rootMessages = 'Logged in with ' + resp.email;
-                    }
-                });
-            });
-        });
-    };
+     $scope.signIn = function () {
+         oauth2Provider.signIn(function () {
+             gapi.client.load('oauth2', 'v2', function(){
+                 gapi.client.oauth2.userinfo.get().execute(function (resp) {
+                     $scope.$apply(function () {
+                         if (resp.email) {
+                             oauth2Provider.signedIn = true;
+                             $scope.alertStatus = 'success';
+                             $scope.rootMessages = 'Logged in with ' + resp.email;
+                         }
+                     });
+                 });
+             });
+         });
+     };
 
     /**
      * Render the signInButton and restore the credential if it's stored in the cookie.
@@ -779,22 +779,24 @@ conferenceApp.controllers.controller('RootCtrl', function ($scope, $location, oa
  * The controller for the modal dialog that is shown when an user needs to login to achive some functions.
  *
  */
-conferenceApp.controllers.controller('OAuth2LoginModalCtrl',
-    function ($scope, $modalInstance, $rootScope, oauth2Provider) {
-        $scope.singInViaModal = function () {
-            oauth2Provider.signIn(function () {
-                gapi.client.oauth2.userinfo.get().execute(function (resp) {
-                    $scope.$root.$apply(function () {
-                        oauth2Provider.signedIn = true;
-                        $scope.$root.alertStatus = 'success';
-                        $scope.$root.rootMessages = 'Logged in with ' + resp.email;
-                    });
+ conferenceApp.controllers.controller('OAuth2LoginModalCtrl',
+     function ($scope, $modalInstance, $rootScope, oauth2Provider) {
+         $scope.singInViaModal = function () {
+             oauth2Provider.signIn(function () {
+                 gapi.client.load('oauth2', 'v2', function(){
+                     gapi.client.oauth2.userinfo.get().execute(function (resp) {
+                         $scope.$root.$apply(function () {
+                             oauth2Provider.signedIn = true;
+                             $scope.$root.alertStatus = 'success';
+                             $scope.$root.rootMessages = 'Logged in with ' + resp.email;
+                         });
 
-                    $modalInstance.close();
-                });
-            });
-        };
-    });
+                         $modalInstance.close();
+                     });
+                  });
+             });
+         };
+     });
 
 /**
  * @ngdoc controller
