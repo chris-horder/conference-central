@@ -10,5 +10,5 @@ $Id$
 
 # Replace the following lines with client IDs obtained from the APIs
 # Console or Cloud Console.
-WEB_CLIENT_ID = 'replace with Web client ID'
+WEB_CLIENT_ID = '651455841327-dt2vron51357n281qn3tt7h546bev2qp.apps.googleusercontent.com'
 
