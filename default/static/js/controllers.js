@@ -717,7 +717,9 @@ conferenceApp.controllers.controller('RootCtrl', function ($scope, $location, oa
      */
     $scope.signIn = function () {
         oauth2Provider.signIn(function () {
+          console.log(gapi.client.oauth2)
             gapi.client.oauth2.userinfo.get().execute(function (resp) {
+
                 $scope.$apply(function () {
                     if (resp.email) {
                         oauth2Provider.signedIn = true;
