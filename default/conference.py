@@ -8,7 +8,7 @@ conference.py -- server-side Python App Engine API;
 
 
 from datetime import datetime
-
+import logging
 import endpoints
 from protorpc import messages
 from protorpc import message_types
@@ -49,6 +49,7 @@ class ConferenceApi(remote.Service):
                 else:
                     setattr(pf, field.name, getattr(prof, field.name))
         pf.check_initialized()
+        logging.debug("Did run _copyProfileToForm()")
         return pf
 
 

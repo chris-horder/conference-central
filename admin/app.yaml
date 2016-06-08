@@ -1,6 +1,6 @@
 application: rising-matrix-133523
 module: admin
-version: alpha-001
+version: alpha-002
 runtime: go
 api_version: go1
 
