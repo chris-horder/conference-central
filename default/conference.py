@@ -247,7 +247,7 @@ class ConferenceApi(remote.Service):
     def filterPlayground(self, request):
         q = Conference.query()
         # simple filter usage:
-        q = q.filter(Conference.city == "Paris")
+        # q = q.filter(Conference.city == "Paris")
 
         # advanced filter building and usage
         # field = "city"
@@ -260,6 +260,8 @@ class ConferenceApi(remote.Service):
         # add 2 filters:
         # 1: city equals to Chicago
         # 2: topic equals "Medical Innovations"
+        q = q.filter(Conference.city=="Chicago")
+        q = q.filter(Conference.topics=="Medical Innovations")
 
         return ConferenceForms(
             items=[self._copyConferenceToForm(conf, "") for conf in q]
