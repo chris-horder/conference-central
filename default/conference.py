@@ -9,7 +9,7 @@ conference.py -- server-side Python App Engine API;
 
 from datetime import datetime
 import logging
-import endpointsz
+import endpoints
 from protorpc import messages
 from protorpc import message_types
 from protorpc import remote
