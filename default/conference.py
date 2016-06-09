@@ -411,5 +411,26 @@ class ConferenceApi(remote.Service):
             items=[self._copyConferenceToForm(conf, "") for conf in q]
         )
 
+# - - - Alerts - - - - - - - - - - - - - - - - - - - - - - -
+
+    def _doAlert(self):
+        """Get latest alert and return to user"""
+        # retrieve latest alert from datastore
+        a = Alert.query().order(-Alert.date).get()
+        la = LatestAlert()
+        for field in la.all_fields():
+            # retrieve content string and discard the rest
+            if field.name == 'content':
+                setattr(la, field.name, a.content)
+        la.check_initialized()
+        return la
+
+
+    @endpoints.method(message_types.VoidMessage, LatestAlert,
+                path='alert', http_method='GET', name='getAlert')
+    def getAlert(self, request):
+        """Return latest alert."""
+        return self._doAlert()
+      
 # registers API
 api = endpoints.api_server([ConferenceApi])
