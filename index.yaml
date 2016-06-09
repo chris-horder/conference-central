@@ -1,10 +1,9 @@
 indexes:
-
 - kind: Alert
-	ancestor: yes
+  ancestor: yes
   properties:
   - name: date
-		direction: desc
+    direction: desc
 
 - kind: Conference
   properties:
