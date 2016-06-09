@@ -39,6 +39,11 @@ handlers:       # static then dynamic
   script: main.app
   login: admin
 
+- url: /crons/set_announcement
+  script: main.app
+  login: admin
+  secure: always
+
 - url: /_ah/spi/.*
   script: conference.api
   secure: always

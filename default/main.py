@@ -12,9 +12,8 @@ class SetAnnouncementHandler(webapp2.RequestHandler):
         if not header:
             raise ValueError('attempt to access cron handler directly, '
                              'missing custom App Engine header')
-        # TODO 1
-        # use _cacheAnnouncement() to set announcement in Memcache
-
+        ConferenceApi._cacheAnnouncement()
+        self.response.set_status(204)
 
 class SendConfirmationEmailHandler(webapp2.RequestHandler):
     def post(self):
