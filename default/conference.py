@@ -385,7 +385,7 @@ class ConferenceApi(remote.Service):
         # return ConferenceForm
         return self._copyConferenceToForm(conf, getattr(prof, 'displayName'))
       
-      @endpoints.method(message_types.VoidMessage, ConferenceForms,
+    @endpoints.method(message_types.VoidMessage, ConferenceForms,
             path='filterPlayground',
             http_method='GET', name='filterPlayground')
     def filterPlayground(self, request):
