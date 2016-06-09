@@ -27,6 +27,7 @@ from models import ConferenceForm
 from models import ConferenceForms
 from models import ConferenceQueryForms
 from models import TeeShirtSize
+from models import LatestAlert
 
 from utils import getUserId
 
